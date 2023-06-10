@@ -1,3 +1,7 @@
+# Redshift example 
+
+This repo provides an example of using Redshift to load and analyze user listen and song data from a hypothetical music app. The code builds on sample code from a Udacity class project. 
+
 ## Running this code 
 
 1. Fill in `dwh.cfg` with your AWS information, cluster information (including host and DB login), and an IAM_ROLE that allows you to access your cluster. 
