@@ -4,17 +4,38 @@ from sql_queries import copy_table_queries, insert_table_queries, exploratory_qu
 
 
 def load_staging_tables(cur, conn):
+    """
+    Load data into staging tables from S3. 
+
+    Parameters:
+    cur: The cursor to the database 
+    conn: The connection to the database 
+    """
     for query in copy_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def insert_tables(cur, conn):
+    """
+    Load data from staging tables to final star schema tables. 
+
+    Parameters:
+    cur: The cursor to the database 
+    conn: The connection to the database 
+    """
     for query in insert_table_queries:
         cur.execute(query)
         conn.commit()
 
 def run_analytics(cur, conn):
+    """
+    Run analytics queries on final tables. 
+
+    Parameters:
+    cur: The cursor to the database 
+    conn: The connection to the database 
+    """
     print("RUNNING SAMPLE ANALYSIS")
     for query in exploratory_queries:
         cur.execute(query)
