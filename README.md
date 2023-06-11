@@ -8,7 +8,7 @@ This repo provides an example of using Redshift to load and analyze user listen 
 2. Run `python create_tables.py` to create all tables 
 3. Run `python etl.py` to stage and load data, and run sample analysis. 
 
-NOTE: This code currently only loads 1 month of songplay data and a small subset of song data, for efficiency. This can be modified by changing the s3 addresses in `sql_queries` to reference the entire dataset. Specifically, to do this, remove the `/2018/11` and `/A/A` suffixes where they appear in the `staging_events_copy` and `staging_songs_copy` queries. Note that you will need a large cluster and patience to run the full dataset! 
+NOTE: This code currently only loads 1 month of songplay data and a small subset of song data, for efficiency. This can be modified by changing the s3 addresses in `dwh.cfg` to reference the entire dataset. Specifically, to do this, remove the `/2018/11` and `/A/A` suffixes where they appear in the `LOG_DATA` and `SONG_DATA` paths. Note that you will need a large cluster and patience to run the full dataset! 
 
 ## Staging table design 
 

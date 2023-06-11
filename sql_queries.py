@@ -6,6 +6,9 @@ config = configparser.ConfigParser()
 config.read('dwh.cfg')
 
 IAM_ROLE = config.get("IAM_ROLE", "ARN")
+LOG_DATA_PATH = config.get("S3", "LOG_DATA")
+LOG_JSON_PATH = config.get("S3", "LOG_JSONPATH")
+SONG_DATA_PATH = config.get("S3", "SONG_DATA")
 
 # DROP TABLES
 
@@ -125,16 +128,16 @@ CREATE TABLE "times" (
 # STAGING TABLES
 
 staging_events_copy = """
-    copy staging_events from 's3://udacity-dend/log_data/2018/11'
+    copy staging_events from {}
     iam_role {}
-    json 's3://udacity-dend/log_json_path.json' region 'us-west-2';
-""".format(IAM_ROLE) 
+    json {} region 'us-west-2';
+""".format(LOG_DATA_PATH, IAM_ROLE, LOG_JSON_PATH) 
 
 staging_songs_copy = """
-    copy staging_songs from 's3://udacity-dend/song_data/A/A'
+    copy staging_songs from {}
     iam_role {}
     json 'auto' region 'us-west-2';
-""".format(IAM_ROLE) 
+""".format(SONG_DATA_PATH, IAM_ROLE) 
 
 # FINAL TABLES
 
